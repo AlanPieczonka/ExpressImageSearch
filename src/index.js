@@ -13,8 +13,9 @@ app.get('/', (req,res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.get('/images', (req,res) => {
-  client.search('Gojira').then((images) => res.json(images));
+app.get('/api/imagesearch/:search', (req,res) => {
+  const search = req.params.search;
+  client.search(search).then((images) => res.json(images));
 });
 
 app.listen(8080, () => console.log('Running on port 8080'));
